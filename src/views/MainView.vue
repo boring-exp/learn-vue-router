@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <header>{{ userId }}</header>
-    <header>{{ $route.params.userId }}</header>
+    <header><header-cop /></header>
+    <!-- <header>{{ $route.params }}</header> -->
     <div class="body">
       <aside>
         <aside-cop></aside-cop>
@@ -13,18 +13,20 @@
   </div>
 </template>
 <script>
-import { store } from '@/utils/store'
+// import { store } from '@/utils/store'
 import AsideCop from '@/components/AsideCop.vue'
+import HeaderCop from '@/components/HeaderCop.vue'
 export default {
   name: 'MainView',
   components: {
-    AsideCop
+    AsideCop,
+    HeaderCop,
   },
   // vue-router进行传递
   props: ['userId'],
   mounted() {
-    console.log('main组件', store)
-    console.log(this.$route.params)
+    // console.log('main组件', store)
+    // console.log(this.$route)
   }
 }
 </script>
