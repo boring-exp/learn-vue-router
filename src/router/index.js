@@ -3,18 +3,17 @@ import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import MainView from '@/views/MainView.vue'
 import DefaultTab from '@/components/navbar/DefaultTab.vue'
+import DataTab from '@/components/navbar/DataTab.vue'
 
 Vue.use(VueRouter)
 
 const routesArr = [
   {
     path: '/',
-    name: 'home', // 随意给
     component: HomeView
   },
   {
     path: '/main',
-    name: 'main',
     // 路由懒加载
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -27,6 +26,14 @@ const routesArr = [
         path: 'default',
         component: DefaultTab,
       },
+      {
+        path: 'data',
+        component: DataTab,
+      },
+      {
+        path: '',
+        redirect: 'default'
+      }
     ]
   }
 ]

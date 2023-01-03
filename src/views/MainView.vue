@@ -37,11 +37,6 @@ export default {
     aside {
       width: 264px;
       height: 100%;
-
-      ul {
-        overflow-y: auto;
-        height: 100%;
-      }
     }
 
     main {
