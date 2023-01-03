@@ -41,6 +41,9 @@ export default {
       pInfo: '这是用来设置默认的input框的值'
     }
   },
+  destroyed() {
+    console.log('销毁了')
+  },
   // 方法
   methods: {
     login() {
@@ -54,17 +57,10 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 /**
 使用了scoped关键字，当前样式只应用于此组件以及子组件，不会影响父组件
 */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  overflow-y: hidden;
-}
-
 .container {
   display: flex;
 }
