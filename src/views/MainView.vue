@@ -1,22 +1,30 @@
 <template>
   <div class="container">
-    <header>这是头部</header>
+    <header>{{ userId }}</header>
+    <header>{{ $route.params.userId }}</header>
     <div class="body">
       <aside>
         <aside-cop></aside-cop>
       </aside>
       <main>
-       <router-view></router-view>
+        <router-view></router-view>
       </main>
     </div>
   </div>
 </template>
 <script>
+import { store } from '@/utils/store'
 import AsideCop from '@/components/AsideCop.vue'
 export default {
   name: 'MainView',
   components: {
     AsideCop
+  },
+  // vue-router进行传递
+  props: ['userId'],
+  mounted() {
+    console.log('main组件', store)
+    console.log(this.$route.params)
   }
 }
 </script>
@@ -28,6 +36,7 @@ export default {
   header {
     height: 60px;
     background-color: #000;
+    color: #fff;
   }
 
   .body {

@@ -14,24 +14,29 @@
     </div>
 </template>
 <script>
-const routeMap = new Map()
-routeMap.set('0', '/main/default')
-routeMap.set('1', '/main/data')
 export default {
     name: 'AsideCop',
     data: function () {
         return {
-            activeFlag: '0'
+            activeFlag: '0',
+            routerMap: new Map()
         }
     },
+    mounted() {
+        console.log('导航栏', this.$route.params)
+        const pathVal = this.$route.params.userId;
+        this.routerMap.set('0', `/main/${pathVal}/default`)
+        this.routerMap.set('1', `/main/${pathVal}/data`)
+    },  
     methods: {
         active(index) {
             this.activeFlag = index;
             console.log(typeof index)
-            if (routeMap.has(index)) {
+            if (this.routerMap.has(index)) {
                 // 防止目标url当前url相同时，push出错
-                const aimUrl = routeMap.get(index);
+                const aimUrl = this.routerMap.get(index);
                 const currentUrl = this.$router.currentRoute.fullPath
+                console.log(currentUrl)
                 if (aimUrl !== currentUrl) {
                     this.$router.push(aimUrl)
                 }
