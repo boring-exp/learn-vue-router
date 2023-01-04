@@ -60,7 +60,6 @@ export default {
 
     main {
       width: calc(100% - 264px);
-      overflow-y: auto;
     }
   }
 
