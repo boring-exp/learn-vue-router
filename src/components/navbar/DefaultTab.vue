@@ -1,5 +1,5 @@
 <template>
-    <div class="default" ref="default">
+    <div class="default" ref="default" @scroll="setButton($event, '哈哈哈')">
         <div ref="top">默认导航栏，tab1</div>
         <div style="height: 1000px; backgroud-color: red;">
         </div>
@@ -15,7 +15,9 @@ export default {
         }
     },
     mounted() {
-        this.$refs.default.addEventListener('scroll', this.setButton)
+        // 原生的事件绑定
+        // this.$refs.default.addEventListener('scroll', this.setButton)
+        // this.$refs.default.onscroll = this.setButton
     },
     methods: {
         returnTop() {
@@ -23,7 +25,7 @@ export default {
                 behavior: 'smooth'
             });
         },
-        setButton() {
+        setButton(e, name) {
             // 可优化
             // if (this.$refs.default.scrollTo > 0) {
             //     this.needTopBtn = true;
@@ -31,8 +33,20 @@ export default {
             //     this.needTopBtn = false;
             // } 
             // 和上面的逻辑等价
-            this.needTopBtn = this.$refs.default.scrollTop > 0;
+            // 对于原生的变量，如何监听变化呢？
+            console.log(e, name)
+            // if (this.$refs.default.scrollTop > 0) {
+            if (e.target.scrollTop > 0) {
+                this.needTopBtn = true
+            } else {
+                this.needTopBtn = false
+            }
+            // this.needTopBtn = this.$refs.default.scrollTop > 0;
         }
+    },
+    destroyed() {
+        // this.$refs.default.removeEventListener('scroll', this.setButton);
+        // this.$refs.default.onscroll = null;
     }
 }
 </script>
