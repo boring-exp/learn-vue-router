@@ -41,7 +41,7 @@ export default {
             } else {
                 this.needTopBtn = false
             }
-            // this.needTopBtn = this.$refs.default.scrollTop > 0;
+            // this.needTopBtn = e.target.scrollTop > 0;
         }
     },
     destroyed() {
