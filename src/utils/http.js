@@ -8,7 +8,7 @@ const http = axios.create({
     baseURL: PRODUCTINO_URL,
     timeout: 1000,
     headers: {
-        Authorization: 'APPCODE 123456789'
+        Authorization: 'APPCODE e36e4f85632f48d8bf3a4b12e260877e'
     }
 })
 
