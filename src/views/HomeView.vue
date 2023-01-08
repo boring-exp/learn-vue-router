@@ -22,6 +22,7 @@
           </el-form>
           <div class="operator">
             <el-button size="small" @click="login" :disabled="canLogin">{{$t("msg.login")}}</el-button>
+            <el-button @click="changeLang">切换语言</el-button>
           </div>
         </div>
       </div>
@@ -62,6 +63,9 @@ export default {
   },
   // 方法
   methods: {
+    changeLang() {
+      this.$root.$i18n.locale = 'en'
+    },
     async login() {
       console.log(this.$router)
       // 提供 isAuthenticated
