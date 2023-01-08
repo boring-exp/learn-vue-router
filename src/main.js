@@ -3,11 +3,14 @@ import App from './App.vue'
 import vueRouter from './router'
 import ElementUI from 'element-ui';
 import '@/assets/theme-css/index.css';
+import i18n from './i18n'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 new Vue({
+  // 2.引入实例
+  i18n,
   router: vueRouter,
   render: h => h(App)
 }).$mount('#app')
