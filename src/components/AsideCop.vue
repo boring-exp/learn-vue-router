@@ -3,7 +3,9 @@
         <el-menu :default-active="activeFlag" @select="active">
             <el-menu-item index="0">
                 <i class="el-icon-menu"></i>
-                <span slot="title">首页</span>
+                <span slot="title">
+                    {{ $t("index") }}
+                </span>
             </el-menu-item>
             <el-menu-item index="1">
                 <i class="el-icon-document"></i>
@@ -27,7 +29,7 @@ export default {
         const pathVal = this.$route.params.userId;
         this.routerMap.set('0', `/main/${pathVal}/default`)
         this.routerMap.set('1', `/main/${pathVal}/data`)
-    },  
+    },
     methods: {
         active(index) {
             this.activeFlag = index;
