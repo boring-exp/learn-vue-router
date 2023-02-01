@@ -42,6 +42,7 @@
 <script>
 import { getToken } from '@/utils/store'
 import { state } from '@/store/index'
+import {http} from '@/utils/http'
 
 export default {
   // 预定义属性
@@ -91,12 +92,20 @@ export default {
       // TODO: 更改国际化语言
     },
     async login() {
-      console.log(this.$router)
+      // console.log(this.$router)
       // 提供 isAuthenticated
       // TODO: 网络请求
-      const token = await getToken()
-      sessionStorage.setItem('token', token)
-      this.$router.push({ path: `main/${this.form.name}`, query: { email: this.form.email } })
+      const result = await http.post('/login', {username: this.form.name, password: this.form.passwd})
+      const data = result.data;
+      if (data.success) {
+        sessionStorage.setItem('token', 'token')
+        this.$router.push({ path: `main/${this.form.name}`, query: { email: this.form.email } })
+      } else {
+        this.$message('失败')
+      }
+      console.log(result)
+      // const token = await getToken()
+      // this.$router.push({ path: `main/${this.form.name}`, query: { email: this.form.email } })
       // router.push({path: 'about'})
       // store.push(this.form)
       // console.log(store)
