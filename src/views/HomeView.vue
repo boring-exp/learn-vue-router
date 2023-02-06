@@ -95,7 +95,7 @@ export default {
       // console.log(this.$router)
       // 提供 isAuthenticated
       // TODO: 网络请求
-      const result = await http.post('/login', {username: this.form.name, password: this.form.passwd})
+      const result = await http.post('/login', {username: this.form.name, password: this.form.passwd, email: this.form.email})
       const data = result.data;
       if (data.success) {
         console.log(data)
