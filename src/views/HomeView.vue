@@ -42,7 +42,7 @@
 <script>
 import { getToken } from '@/utils/store'
 import { state } from '@/store/index'
-import {http} from '@/utils/http'
+import { http } from '@/utils/http'
 
 export default {
   // 预定义属性
@@ -67,6 +67,11 @@ export default {
     }
   },
   mounted() {
+    // TODO: 链接socket
+    const socket = new WebSocket("ws://localhost:8090");
+
+    socket.addEventListener("message", this.cross);
+    // socket end
     console.log(this.globalData)
     setTimeout(() => this.globalData.commit('token', 'vuex', 'HomeView'), 4000)
   },
@@ -86,6 +91,11 @@ export default {
   },
   // 方法
   methods: {
+    cross(event) {
+      console.log('ws', event)
+      sessionStorage.setItem('token', '123456')
+      this.$router.push({ path: `main/12345` })
+    },
     changeLang(lang) {
       console.log(this.$i18n.locale, this.$root.$i18n.locale)
       this.$i18n.locale = lang
@@ -95,7 +105,7 @@ export default {
       // console.log(this.$router)
       // 提供 isAuthenticated
       // TODO: 网络请求
-      const result = await http.post('/login', {username: this.form.name, password: this.form.passwd, email: this.form.email})
+      const result = await http.post('/login', { username: this.form.name, password: this.form.passwd, email: this.form.email })
       const data = result.data;
       if (data.success) {
         console.log(data)
